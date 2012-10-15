@@ -104,12 +104,12 @@ static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioAction
     // current sample number (set below) - so that it's kept between calls to this function
     UInt32 sample = sndbuf[inBusNumber].sampleNum;
 	for (UInt32 i = 0; i < inNumberFrames; ++i) {
-        if (1 == inBusNumber) {
-            outA[i] = 0;
+        if (0 == inBusNumber) {
+            outA[i] = in[sample];
             outB[i] = in[sample++];
         } else {
-             outA[i] = in[sample++];
-             outB[i] = 0;
+             outA[i] = 0.33*in[sample];
+             outB[i] = 0.67*in[sample++];
         }
         if (sample >= bufSamples) sample = 0;
     }
@@ -215,7 +215,7 @@ static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioAction
     if (result) { printf("AUGraphNodeInfo result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
 
     // set bus count
-	UInt32 numbuses = 2;
+	UInt32 numbuses = MAXBUFS;
 	UInt32 size = sizeof(numbuses);
 	
     printf("set input bus count %lu\n", numbuses);
@@ -346,14 +346,8 @@ static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioAction
 {
     printf("BUS %%ldisON %lu\n", inputNum, isONValue);
     
-    // doing some funny stuff as we are only using 2 channels in the mixer but 4 samples for the playback
-    UInt32 inum = 0;
-    if ((inputNum>=1) && (inputNum<=3)) inum = 1;
-
-    // setting a selected buffer into on/off state to be taken care of in the render function
-    mSoundBuffer[inputNum].isPlaying = (Boolean)isONValue;
     // setting a certain mixer channel to on / off
-    OSStatus result = AudioUnitSetParameter(mMixer, kMultiChannelMixerParam_Enable, kAudioUnitScope_Input, inum, isONValue, 0);
+    OSStatus result = AudioUnitSetParameter(mMixer, kMultiChannelMixerParam_Enable, kAudioUnitScope_Input, inputNum, isONValue, 0);
     if (result) { printf("AudioUnitSetParameter kMultiChannelMixerParam_Enable result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
 
 }

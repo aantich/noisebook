@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "renderInput:MultichannelMixerController.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "in[sample]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MultichannelMixerController enableInput:isOn:]:MultichannelMixerController.mm">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

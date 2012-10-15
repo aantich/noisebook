@@ -58,7 +58,6 @@ typedef struct {
     AudioUnitSampleType *data;
 	UInt32 numFrames;
 	UInt32 sampleNum;
-    Boolean isPlaying = false;
 } SoundBuffer, *SoundBufferPtr;
 
 @interface MultichannelMixerController : NSObject

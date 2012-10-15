@@ -121,6 +121,8 @@
 {
     [mixerController enableInput:0 isOn:bus0Switch.isOn];
     [mixerController enableInput:1 isOn:bus1Switch.isOn];
+    [mixerController enableInput:2 isOn:bus2Switch.isOn];
+    [mixerController enableInput:3 isOn:bus3Switch.isOn];
     [mixerController setInputVolume:0 value:bus0VolumeSlider.value];
     [mixerController setInputVolume:1 value:bus1VolumeSlider.value];
     [mixerController setOutputVolume:outputVolumeSlider.value];

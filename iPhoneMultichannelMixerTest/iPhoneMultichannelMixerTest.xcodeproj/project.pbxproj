@@ -32,10 +32,10 @@
 		2BF8389A1047021B000A5DCC /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BF838981047021B000A5DCC /* CAXException.cpp */; };
 		2BFBE19D0F5C9B30003ECC4F /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFBE19B0F5C9B30003ECC4F /* MyViewController.m */; };
 		F81D7DC8162C19BC00A3C96E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DC7162C19BC00A3C96E /* Default-568h@2x.png */; };
-		F81D7DCD162C1B8A00A3C96E /* Meixana_ACC_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DC9162C1B8A00A3C96E /* Meixana_ACC_1.wav */; };
-		F81D7DCE162C1B8A00A3C96E /* Meixana_ACC_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DCA162C1B8A00A3C96E /* Meixana_ACC_2.wav */; };
-		F81D7DCF162C1B8A00A3C96E /* Meixana_ACC_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DCB162C1B8A00A3C96E /* Meixana_ACC_3.wav */; };
-		F81D7DD0162C1B8A00A3C96E /* Meixana_MAIN.wav in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DCC162C1B8A00A3C96E /* Meixana_MAIN.wav */; };
+		F81D7DD5162C439A00A3C96E /* Meixana_ACC_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DD1162C439A00A3C96E /* Meixana_ACC_1.wav */; };
+		F81D7DD6162C439A00A3C96E /* Meixana_ACC_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DD2162C439A00A3C96E /* Meixana_ACC_2.wav */; };
+		F81D7DD7162C439A00A3C96E /* Meixana_ACC_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DD3162C439A00A3C96E /* Meixana_ACC_3.wav */; };
+		F81D7DD8162C439A00A3C96E /* Meixana_MAIN.wav in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DD4162C439A00A3C96E /* Meixana_MAIN.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,10 +75,10 @@
 		2BFBE1A00F5C9C30003ECC4F /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F81D7DC7162C19BC00A3C96E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		F81D7DC9162C1B8A00A3C96E /* Meixana_ACC_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meixana_ACC_1.wav; path = ../Meixana_ACC_1.wav; sourceTree = "<group>"; };
-		F81D7DCA162C1B8A00A3C96E /* Meixana_ACC_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meixana_ACC_2.wav; path = ../Meixana_ACC_2.wav; sourceTree = "<group>"; };
-		F81D7DCB162C1B8A00A3C96E /* Meixana_ACC_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meixana_ACC_3.wav; path = ../Meixana_ACC_3.wav; sourceTree = "<group>"; };
-		F81D7DCC162C1B8A00A3C96E /* Meixana_MAIN.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meixana_MAIN.wav; path = ../Meixana_MAIN.wav; sourceTree = "<group>"; };
+		F81D7DD1162C439A00A3C96E /* Meixana_ACC_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Meixana_ACC_1.wav; sourceTree = "<group>"; };
+		F81D7DD2162C439A00A3C96E /* Meixana_ACC_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Meixana_ACC_2.wav; sourceTree = "<group>"; };
+		F81D7DD3162C439A00A3C96E /* Meixana_ACC_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Meixana_ACC_3.wav; sourceTree = "<group>"; };
+		F81D7DD4162C439A00A3C96E /* Meixana_MAIN.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Meixana_MAIN.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,10 +145,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F81D7DC9162C1B8A00A3C96E /* Meixana_ACC_1.wav */,
-				F81D7DCA162C1B8A00A3C96E /* Meixana_ACC_2.wav */,
-				F81D7DCB162C1B8A00A3C96E /* Meixana_ACC_3.wav */,
-				F81D7DCC162C1B8A00A3C96E /* Meixana_MAIN.wav */,
+				F81D7DD1162C439A00A3C96E /* Meixana_ACC_1.wav */,
+				F81D7DD2162C439A00A3C96E /* Meixana_ACC_2.wav */,
+				F81D7DD3162C439A00A3C96E /* Meixana_ACC_3.wav */,
+				F81D7DD4162C439A00A3C96E /* Meixana_MAIN.wav */,
 				185E840411E525570096E7CF /* Icon-72.png */,
 				185E840511E525570096E7CF /* Icon-Small-50.png */,
 				185E840611E525570096E7CF /* Icon-Small.png */,
@@ -256,10 +256,10 @@
 				185E841011E525570096E7CF /* Icon@2x.png in Resources */,
 				185E841111E525570096E7CF /* iTunesArtwork in Resources */,
 				F81D7DC8162C19BC00A3C96E /* Default-568h@2x.png in Resources */,
-				F81D7DCD162C1B8A00A3C96E /* Meixana_ACC_1.wav in Resources */,
-				F81D7DCE162C1B8A00A3C96E /* Meixana_ACC_2.wav in Resources */,
-				F81D7DCF162C1B8A00A3C96E /* Meixana_ACC_3.wav in Resources */,
-				F81D7DD0162C1B8A00A3C96E /* Meixana_MAIN.wav in Resources */,
+				F81D7DD5162C439A00A3C96E /* Meixana_ACC_1.wav in Resources */,
+				F81D7DD6162C439A00A3C96E /* Meixana_ACC_2.wav in Resources */,
+				F81D7DD7162C439A00A3C96E /* Meixana_ACC_3.wav in Resources */,
+				F81D7DD8162C439A00A3C96E /* Meixana_MAIN.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
