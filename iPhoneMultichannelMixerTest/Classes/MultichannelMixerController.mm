@@ -117,11 +117,11 @@ static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioAction
     UInt32 sample = sndbuf[inBusNumber].sampleNum;
 	for (UInt32 i = 0; i < inNumberFrames; ++i) {
         if (0 == inBusNumber) {
-            outA[i] = in[sample];
-            outB[i] = in[sample++];
+            outA[i] = 0.5*in[sample];
+            outB[i] = 0.5*in[sample++];
         } else {
-             outA[i] = 0.33*in[sample];
-             outB[i] = 0.67*in[sample++];
+             outA[i] = 0.5*in[sample];
+             outB[i] = 0.5*in[sample++];
         }
         if (sample >= bufSamples) sample = 0;
     }
@@ -202,19 +202,19 @@ static OSStatus recordingCallback       (void *                         inRefCon
     NSString *sourceD = [[NSBundle mainBundle] pathForResource:@"Meixana_ACC_3" ofType:@"wav"];
      */
     // Blues bundle
-    
+    /*
     NSString *sourceA = [[NSBundle mainBundle] pathForResource:@"BluesDrums" ofType:@"wav"];
     NSString *sourceB = [[NSBundle mainBundle] pathForResource:@"BluesAccI" ofType:@"wav"];
     NSString *sourceC = [[NSBundle mainBundle] pathForResource:@"BluesAccIV" ofType:@"wav"];
     NSString *sourceD = [[NSBundle mainBundle] pathForResource:@"BluesAccV" ofType:@"wav"];
-    
+    */
     // R&B bundle
-    /*
+    
     NSString *sourceA = [[NSBundle mainBundle] pathForResource:@"Acid R&B Drums" ofType:@"wav"];
     NSString *sourceB = [[NSBundle mainBundle] pathForResource:@"Acid R&B Lead" ofType:@"wav"];
     NSString *sourceC = [[NSBundle mainBundle] pathForResource:@"Acid R&B LeadArp" ofType:@"wav"];
     NSString *sourceD = [[NSBundle mainBundle] pathForResource:@"Acid R&B SynthChords" ofType:@"wav"];
-*/
+
 
     sourceURL[0] = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)sourceA, kCFURLPOSIXPathStyle, false);
     sourceURL[1] = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)sourceB, kCFURLPOSIXPathStyle, false);

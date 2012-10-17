@@ -114,7 +114,7 @@ static void propertyListener(void *inClientData, AudioSessionPropertyID inID, UI
         // Initialize and configure the audio session
         XThrowIfError(AudioSessionInitialize(NULL, NULL, interruptionListener, self), "couldn't initialize audio session");
             
-        UInt32 audioCategory = kAudioSessionCategory_MediaPlayback;
+        UInt32 audioCategory = kAudioSessionCategory_PlayAndRecord;
         XThrowIfError(AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(audioCategory), &audioCategory), "couldn't set audio category");
         XThrowIfError(AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange, propertyListener, self), "couldn't set property listener");
             
