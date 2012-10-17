@@ -42,7 +42,17 @@
  POSSIBILITY OF SUCH DAMAGE. 
   
  Copyright (C) 2010 Apple Inc. All Rights Reserved. 
-  
+ 
+*/
+
+/*
+
+ Ok, what we need to do is:
+ - Add ability to get buffers from the mic, put them into mixer and then it is already connected to the output
+ ==> Ok, the solution was simple: initialized RIO for recording and connected it's 1 bus (input) to mixer's 5th bus,
+ while keeping callbacks that feed sample data in 0-4 buses!
+ - Now, TODO: record whatever we get there. Callback on the RIO 0 bus???
+ 
 */
 
 #import "MultiChannelMixerController.h"
@@ -164,18 +174,19 @@ static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioAction
     NSString *sourceD = [[NSBundle mainBundle] pathForResource:@"Meixana_ACC_3" ofType:@"wav"];
      */
     // Blues bundle
-    /*
+    
     NSString *sourceA = [[NSBundle mainBundle] pathForResource:@"BluesDrums" ofType:@"wav"];
     NSString *sourceB = [[NSBundle mainBundle] pathForResource:@"BluesAccI" ofType:@"wav"];
     NSString *sourceC = [[NSBundle mainBundle] pathForResource:@"BluesAccIV" ofType:@"wav"];
     NSString *sourceD = [[NSBundle mainBundle] pathForResource:@"BluesAccV" ofType:@"wav"];
-     */
+    
     // R&B bundle
+    /*
     NSString *sourceA = [[NSBundle mainBundle] pathForResource:@"Acid R&B Drums" ofType:@"wav"];
     NSString *sourceB = [[NSBundle mainBundle] pathForResource:@"Acid R&B Lead" ofType:@"wav"];
     NSString *sourceC = [[NSBundle mainBundle] pathForResource:@"Acid R&B LeadArp" ofType:@"wav"];
     NSString *sourceD = [[NSBundle mainBundle] pathForResource:@"Acid R&B SynthChords" ofType:@"wav"];
-
+*/
 
     sourceURL[0] = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)sourceA, kCFURLPOSIXPathStyle, false);
     sourceURL[1] = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)sourceB, kCFURLPOSIXPathStyle, false);
@@ -220,7 +231,7 @@ static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioAction
     // connect a node's output to a node's input
 	result = AUGraphConnectNodeInput(mGraph, mixerNode, 0, outputNode, 0);
 	if (result) { printf("AUGraphConnectNodeInput result %lu %4.4s\n", result, (char*)&result); return; }
-	
+    	
     // open the graph AudioUnits are open but not initialized (no resource allocation occurs here)
 	result = AUGraphOpen(mGraph);
 	if (result) { printf("AUGraphOpen result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
@@ -228,16 +239,34 @@ static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioAction
 	result = AUGraphNodeInfo(mGraph, mixerNode, NULL, &mMixer);
     if (result) { printf("AUGraphNodeInfo result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
 
-    // set bus count
-	UInt32 numbuses = MAXBUFS;
+    // *******************************************************
+    // getting a RIO unit
+    result = AUGraphNodeInfo(mGraph, outputNode, NULL, &mRIO);
+    if (result) { printf("AUGraphNodeInfo result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
+
+    // set bus count - 4 for samples and 1 for mic input???
+	UInt32 numbuses = MAXBUFS + 1;
 	UInt32 size = sizeof(numbuses);
 	
     printf("set input bus count %lu\n", numbuses);
 	
     result = AudioUnitSetProperty(mMixer, kAudioUnitProperty_ElementCount, kAudioUnitScope_Input, 0, &numbuses, sizeof(UInt32));
     if (result) { printf("AudioUnitSetProperty result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
+    
+    // *******************************************************
+    // straightforward connection of IORemote input to mixer - 5th bus, need to clean this up 
+	result = AUGraphConnectNodeInput(mGraph, outputNode, 1, mixerNode, 5);
+	if (result) { printf("AUGraphConnectNodeInput result %lu %4.4s\n", result, (char*)&result); return; }
+    // *******************************************************
+    
+    // *******************************************************
+    // making sure mic is on
+    UInt32 oneFlag=1;
+    result = AudioUnitSetProperty(mRIO, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, 1, &oneFlag, sizeof(oneFlag));
+    if (result) { printf("AudioUnitSetProperty result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
 
-	for (int i = 0; i < numbuses; ++i) {
+// only setting up callbacks to play samples, mic is supposed to be connected directly - AND IT WORKS!!!
+	for (int i = 0; i < MAXBUFS; ++i) {
 		// setup render callback struct
 		AURenderCallbackStruct rcbs;
 		rcbs.inputProc = &renderInput;

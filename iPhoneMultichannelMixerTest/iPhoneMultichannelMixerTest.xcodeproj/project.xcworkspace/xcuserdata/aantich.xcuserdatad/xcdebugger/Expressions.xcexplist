@@ -13,5 +13,13 @@
       <ContextState
          contextName = "-[MultichannelMixerController enableInput:isOn:]:MultichannelMixerController.mm">
       </ContextState>
+      <ContextState
+         contextName = "-[MultichannelMixerController initializeAUGraph]:MultichannelMixerController.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "mixerNode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

@@ -66,6 +66,7 @@ typedef struct {
     
 	AUGraph   mGraph;
 	AudioUnit mMixer;
+    AudioUnit mRIO;
     
     SoundBuffer mSoundBuffer[MAXBUFS];
 
