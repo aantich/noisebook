@@ -174,11 +174,29 @@
 {
     UInt32 inputNum = [sender tag];
     AudioUnitParameterValue isOn = (AudioUnitParameterValue)sender.isOn;
+//    UInt32 off1 = 1;
+ //   UInt32 off2 = 1;
     
     if (0 == inputNum) self.bus0VolumeSlider.enabled = isOn;
-    if ((1 == inputNum) || (2 == inputNum) || (3 == inputNum)) self.bus1VolumeSlider.enabled = isOn;
+    if ((1 == inputNum) || (2 == inputNum) || (3 == inputNum)) {
+        self.bus1VolumeSlider.enabled = isOn;
+        if (1 == inputNum) {
+            bus2Switch.on = false;
+            bus3Switch.on = false;
+        } else if (2 == inputNum) {
+            bus1Switch.on = false;
+            bus3Switch.on = false;
+        } else if (3 == inputNum) {
+            bus1Switch.on = false;
+            bus2Switch.on = false;
+        }
+    }
                                     
-    [mixerController enableInput:inputNum isOn:isOn];
+    [mixerController enableInput:0 isOn:bus0Switch.isOn];
+    [mixerController enableInput:1 isOn:bus1Switch.isOn];
+    [mixerController enableInput:2 isOn:bus2Switch.isOn];
+    [mixerController enableInput:3 isOn:bus3Switch.isOn];
+    
 }
 
 // handle input volume changes

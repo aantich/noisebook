@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/MultichannelMixerController.mm"
-         timestampString = "372000556.391853"
+         timestampString = "372189943.319541"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "372"
-         endingLineNumber = "372"
+         startingLineNumber = "389"
+         endingLineNumber = "389"
          landmarkName = "-startAUGraph"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/MultichannelMixerController.mm"
-         timestampString = "371993217.116851"
+         timestampString = "372189943.319541"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "174"
-         endingLineNumber = "174"
+         startingLineNumber = "188"
+         endingLineNumber = "188"
          landmarkName = "-initializeAUGraph"
          landmarkType = "5">
       </FileBreakpoint>
@@ -41,6 +41,19 @@
          endingLineNumber = "105"
          landmarkName = "renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioActionFlags, const AudioTimeStamp *inTimeStamp, UInt32 inBusNumber, UInt32 inNumberFrames, AudioBufferList *ioData)"
          landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Classes/MultichannelMixerController.mm"
+         timestampString = "372189943.319541"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "361"
+         endingLineNumber = "361"
+         landmarkName = "-enableInput:isOn:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

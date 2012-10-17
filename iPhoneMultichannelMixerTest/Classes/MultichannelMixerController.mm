@@ -156,12 +156,26 @@ static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioAction
 	memset(&mSoundBuffer, 0, sizeof(mSoundBuffer));
     
     // create the URLs we'll use for source A and B
-    //NSString *sourceA = [[NSBundle mainBundle] pathForResource:@"GuitarMonoSTP" ofType:@"aif"];
-    //NSString *sourceB = [[NSBundle mainBundle] pathForResource:@"DrumsMonoSTP" ofType:@"aif"];
+    // Meihana bundle
+    /*
     NSString *sourceA = [[NSBundle mainBundle] pathForResource:@"Meixana_MAIN" ofType:@"wav"];
     NSString *sourceB = [[NSBundle mainBundle] pathForResource:@"Meixana_ACC_1" ofType:@"wav"];
     NSString *sourceC = [[NSBundle mainBundle] pathForResource:@"Meixana_ACC_2" ofType:@"wav"];
     NSString *sourceD = [[NSBundle mainBundle] pathForResource:@"Meixana_ACC_3" ofType:@"wav"];
+     */
+    // Blues bundle
+    /*
+    NSString *sourceA = [[NSBundle mainBundle] pathForResource:@"BluesDrums" ofType:@"wav"];
+    NSString *sourceB = [[NSBundle mainBundle] pathForResource:@"BluesAccI" ofType:@"wav"];
+    NSString *sourceC = [[NSBundle mainBundle] pathForResource:@"BluesAccIV" ofType:@"wav"];
+    NSString *sourceD = [[NSBundle mainBundle] pathForResource:@"BluesAccV" ofType:@"wav"];
+     */
+    // R&B bundle
+    NSString *sourceA = [[NSBundle mainBundle] pathForResource:@"Acid R&B Drums" ofType:@"wav"];
+    NSString *sourceB = [[NSBundle mainBundle] pathForResource:@"Acid R&B Lead" ofType:@"wav"];
+    NSString *sourceC = [[NSBundle mainBundle] pathForResource:@"Acid R&B LeadArp" ofType:@"wav"];
+    NSString *sourceD = [[NSBundle mainBundle] pathForResource:@"Acid R&B SynthChords" ofType:@"wav"];
+
 
     sourceURL[0] = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)sourceA, kCFURLPOSIXPathStyle, false);
     sourceURL[1] = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)sourceB, kCFURLPOSIXPathStyle, false);
@@ -344,8 +358,11 @@ static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioAction
 // enable or disables a specific bus
 - (void)enableInput:(UInt32)inputNum isOn:(AudioUnitParameterValue)isONValue
 {
-    printf("BUS %%ldisON %lu\n", inputNum, isONValue);
+    printf("BUS %ld isON %f\n", inputNum, isONValue);
+    //printf("Sample num is %ld\n", mSoundBuffer[inputNum].sampleNum);
     
+    // playing every sample from the start if it's turned off
+    if (0 != inputNum) mSoundBuffer[inputNum].sampleNum = 0;
     // setting a certain mixer channel to on / off
     OSStatus result = AudioUnitSetParameter(mMixer, kMultiChannelMixerParam_Enable, kAudioUnitScope_Input, inputNum, isONValue, 0);
     if (result) { printf("AudioUnitSetParameter kMultiChannelMixerParam_Enable result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
