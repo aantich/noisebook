@@ -52,6 +52,7 @@
  ==> Ok, the solution was simple: initialized RIO for recording and connected it's 1 bus (input) to mixer's 5th bus,
  while keeping callbacks that feed sample data in 0-4 buses!
  - Now, TODO: record whatever we get there. Callback on the RIO 0 bus???
+ - Mic input gets a lot of noise for some reason
  
 */
 
@@ -97,6 +98,7 @@ public:
 #pragma mark- RenderProc
 
 // audio render procedure, don't allocate memory, don't take any locks, don't waste time
+// samples playback callback (hahaha)
 static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioActionFlags, const AudioTimeStamp *inTimeStamp, UInt32 inBusNumber, UInt32 inNumberFrames, AudioBufferList *ioData)
 {
     // we set this to be our mSoundBuffer array when setting up the callback in AUGraph initialization
@@ -128,6 +130,32 @@ static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioAction
     
 	return noErr;
 }
+
+// recording callback!
+static OSStatus recordingCallback       (void *                         inRefCon,
+                                         AudioUnitRenderActionFlags *      ioActionFlags,
+                                         const AudioTimeStamp *            inTimeStamp,
+                                         UInt32                            inBusNumber,
+                                         UInt32                            inNumberFrames,
+                                         AudioBufferList *                 ioData) {
+    if (*ioActionFlags == kAudioUnitRenderAction_PostRender && inBusNumber == 0)
+    {
+        /*
+        SInt32 *dataLeftChannel = (SInt32 *)ioData->mBuffers[0].mData;
+        for (UInt32 frameNumber = 0; frameNumber < inNumberFrames; ++frameNumber) {
+            NSLog(@"sample %lu: %ld", frameNumber, dataLeftChannel[frameNumber]);
+        }*/
+        // testing data, no real code
+        /*
+        SInt16 *dataLeftChannel = (SInt16 *)ioData->mBuffers[0].mData;
+        for (UInt32 frameNumber = 0; frameNumber < inNumberFrames; ++frameNumber) {
+            NSLog(@"sample %lu: %d", frameNumber, dataLeftChannel[frameNumber]);
+        }*/
+    }
+    return noErr;     
+}
+
+
 
 #pragma mark- MultichannelMixerController
 
@@ -254,16 +282,40 @@ static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioAction
     if (result) { printf("AudioUnitSetProperty result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
     
     // *******************************************************
-    // straightforward connection of IORemote input to mixer - 5th bus, need to clean this up 
-	result = AUGraphConnectNodeInput(mGraph, outputNode, 1, mixerNode, 5);
+    // straightforward connection of IORemote input to mixer - 5th bus, need to clean this up to allow for larger number of
+    // sample inputs. E.g., TODO: make mic bus #0
+	result = AUGraphConnectNodeInput(mGraph, outputNode, 1, mixerNode, 4);
 	if (result) { printf("AUGraphConnectNodeInput result %lu %4.4s\n", result, (char*)&result); return; }
     // *******************************************************
+    
     
     // *******************************************************
     // making sure mic is on
     UInt32 oneFlag=1;
     result = AudioUnitSetProperty(mRIO, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, 1, &oneFlag, sizeof(oneFlag));
     if (result) { printf("AudioUnitSetProperty result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
+
+    // *******************************************************
+    // hooking up recording callback to RIO output bus
+    AudioUnitAddRenderNotify(mRIO,&recordingCallback,self);
+
+    // *******************************************************
+    // setting stream format for the mic channel
+    // set input stream format to what we want
+    printf("get kAudioUnitProperty_StreamFormat\n");
+    
+    size = sizeof(desc);
+    result = AudioUnitGetProperty(mMixer, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 4, &desc, &size);
+    if (result) { printf("AudioUnitGetProperty result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
+    
+    desc.ChangeNumberChannels(2, false);
+    desc.mSampleRate = kGraphSampleRate;
+    
+    printf("set kAudioUnitProperty_StreamFormat\n");
+    
+    result = AudioUnitSetProperty(mMixer, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 4, &desc, sizeof(desc));
+    if (result) { printf("AudioUnitSetProperty result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
+    // *******************************************************
 
 // only setting up callbacks to play samples, mic is supposed to be connected directly - AND IT WORKS!!!
 	for (int i = 0; i < MAXBUFS; ++i) {
@@ -387,7 +439,7 @@ static OSStatus renderInput(void *inRefCon, AudioUnitRenderActionFlags *ioAction
 // enable or disables a specific bus
 - (void)enableInput:(UInt32)inputNum isOn:(AudioUnitParameterValue)isONValue
 {
-    printf("BUS %ld isON %f\n", inputNum, isONValue);
+    //printf("BUS %ld isON %f\n", inputNum, isONValue);
     //printf("Sample num is %ld\n", mSoundBuffer[inputNum].sampleNum);
     
     // playing every sample from the start if it's turned off
