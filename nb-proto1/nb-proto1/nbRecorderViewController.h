@@ -10,11 +10,15 @@
 
 #import <UIKit/UIKit.h>
 #import "nbSkeletonModel.h"
+#import "MixerHostAudio.h"
 
 @interface nbRecorderViewController : UIViewController
 
 // current skeleton that we will be working with - to be set from the SkeletonTableView controller!
 @property (strong) nbSkeletonModel *skel;
+
+// handling all audio routines, the core of the app!
+@property (nonatomic, retain)    MixerHostAudio              *audioObject;
 
 // should reset everything to zero
 @property (weak, nonatomic) IBOutlet UIButton *btnReset;
@@ -32,5 +36,8 @@
 - (IBAction)pressedSample0:(id)sender;
 // other samples (1-2-3)
 - (IBAction)pressedAnySample:(id)sender;
+
+- (void) initializeMixerSettingsToUI;
+- (void) registerForAudioObjectNotifications;
 
 @end

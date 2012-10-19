@@ -2043,18 +2043,17 @@ float MagnitudeSquared(float x, float y) {
     // tz note: file references must added as resources to the xcode project bundle
 
     
-    NSURL *guitarLoop   = [[NSBundle mainBundle] URLForResource: @"caitlin"
-                                                  withExtension: @"caf"];
+    NSString *guitarLoop   = [[NSBundle mainBundle] pathForResource:@"BluesDrums" ofType:@"wav"];
     
-    NSURL *beatsLoop    = [[NSBundle mainBundle] URLForResource: @"congaloop"
-                                                  withExtension: @"caf"];
+    NSString *beatsLoop    = [[NSBundle mainBundle] pathForResource:@"BluesAccI" ofType:@"wav"];
 
     
     
     
     // ExtAudioFileRef objects expect CFURLRef URLs, so cast to CRURLRef here
-    sourceURLArray[0]   = (__bridge CFURLRef) guitarLoop;
-    sourceURLArray[1]   = (__bridge CFURLRef) beatsLoop;
+    // CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)sourceA, kCFURLPOSIXPathStyle, false);
+    sourceURLArray[0]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)guitarLoop, kCFURLPOSIXPathStyle, false);
+    sourceURLArray[1]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)beatsLoop, kCFURLPOSIXPathStyle, false);
 }
 
 
@@ -3989,8 +3988,12 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 ////////////////////
 // file player setup
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// commenting out for now ////////////////////////////////////////////////////////
+
+
 -(OSStatus) setUpAUFilePlayer {
-    
+    /*
     NSLog (@"Setting up filePlayer\n" );
 
     
@@ -4055,7 +4058,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 	// file duration (unused)
     //	Float32 fileDuration = (nPackets * fileASBD.mFramesPerPacket) / fileASBD.mSampleRate;
 	
-	
+*/	
 	return noErr;
 }
 
@@ -4068,10 +4071,10 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 
 ////////////////
 // sampler setup
-
+// commenting out for now!!!!
 
 -(OSStatus) setUpAUSampler {
-    
+  /*
 	NSString *filePath = [[NSBundle mainBundle] pathForResource: AU_SAMPLER_PRESET_FILE ofType:@"aupreset"];
 	CFURLRef presetURL = (__bridge CFURLRef) [NSURL fileURLWithPath:filePath];
     
@@ -4124,7 +4127,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 										sizeof(presetPlist)),
 				   "Couldn't set aupreset plist as sampler's class info");
 	}
-	
+	*/
     
 	return noErr;
 	

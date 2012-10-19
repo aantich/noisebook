@@ -12,9 +12,12 @@
 
 @end
 
+NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAudioObjectPlaybackStateDidChangeNotification";
+
 @implementation nbRecorderViewController
 
 @synthesize skel;
+@synthesize audioObject;
 
 @synthesize btnReset;
 @synthesize btnRecord;
@@ -68,9 +71,81 @@
     [btnSample3 setBackgroundImage:greenImage forState:UIControlStateSelected];
     
     self.title = skel.name;
+    
+    // ******************** Audio Inits ******************
+    self.audioObject = [[MixerHostAudio alloc] init];
+    
+    [self registerForAudioObjectNotifications];
+    [self initializeMixerSettingsToUI];
 
 
 }
+
+# pragma mark -
+# pragma mark User interface methods
+// Set the initial multichannel mixer unit parameter values according to the UI state
+- (void) initializeMixerSettingsToUI {
+    
+    // Initialize mixer settings to UI
+	
+    //  initialize all the MixerHostAudio methods which respond to UI objects
+	
+    [audioObject enableMixerInput: 0 isOn: YES];
+    [audioObject enableMixerInput: 1 isOn: YES];
+//	[audioObject enableMixerInput: 2 isOn: mixerBus2Switch.isOn];
+
+    /*
+	[audioObject enableMixerInput: 3 isOn: mixerBus3Switch.isOn];
+    [audioObject enableMixerInput: 4 isOn: mixerBus3Switch.isOn];
+    
+    [audioObject enableMixerInput: 5 isOn: mixerBus3Switch.isOn];
+    [audioObject setMixerBus5Fx: mixerBus5FxSwitch.isOn];
+    
+    [audioObject setMixerOutputGain: mixerOutputLevelFader.value];
+    [audioObject setMixerFx: mixerFxSwitch.isOn];
+    
+    [audioObject setMixerInput: 0 gain: mixerBus0LevelFader.value];
+    [audioObject setMixerInput: 1 gain: mixerBus1LevelFader.value];
+    [audioObject setMixerInput: 2 gain: mixerBus2LevelFader.value];
+	[audioObject setMixerInput: 3 gain: mixerBus3LevelFader.value];
+    [audioObject setMixerInput: 4 gain: mixerBus4LevelFader.value];
+	[audioObject setMixerInput: 5 gain: mixerBus5LevelFader.value];
+    */
+    
+	audioObject.micFxOn = NO;
+    audioObject.micFxControl = .5;
+    audioObject.micFxType = 0;
+    
+	
+//	micFreqDisplay.text = @"go";
+	
+	// this updated the pitch field at regular intervals
+	/*
+	[NSTimer scheduledTimerWithTimeInterval:0.1
+									 target:self
+								   selector:@selector(myMethod:)
+								   userInfo:audioObject
+									repeats: YES];
+	
+	*/
+}
+
+
+#pragma mark -
+#pragma mark Notification registration
+// If this app's audio session is interrupted when playing audio, it needs to update its user interface
+//    to reflect the fact that audio has stopped. The MixerHostAudio object conveys its change in state to
+//    this object by way of a notification. To learn about notifications, see Notification Programming Topics.
+- (void) registerForAudioObjectNotifications {
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    [notificationCenter addObserver: self
+                           selector: @selector (handlePlaybackStateChanged:)
+                               name: MixerHostAudioObjectPlaybackStateDidChangeNotification
+                             object: audioObject];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -87,6 +162,7 @@
     [self setBtnSample3:nil];
     
     [self setSkel:nil];
+    [self setAudioObject:nil];
     
     [super viewDidUnload];
 }
@@ -107,4 +183,8 @@
     else
         btn.selected = YES;
 }
+
+
+
+
 @end
