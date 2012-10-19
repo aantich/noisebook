@@ -1827,29 +1827,32 @@ float MagnitudeSquared(float x, float y) {
     
     if (!self) return nil;
 
-    self.interruptedDuringPlayback = NO;
-      
+ 	
+	return self;
+}
 
-    [self setupAudioSession];		            
+- (void) initWithSkeleton:(nbSkeletonModel *)sk {
+    self.skel = sk;
+    
+    self.interruptedDuringPlayback = NO;
+    
+    
+    [self setupAudioSession];
 	
     [self FFTSetup];
     [self convolutionSetup];
     
     [self initDelayBuffer];
-
+    
     [self obtainSoundFileURLs];
     [self setupStereoStreamFormat];
     [self setupMonoStreamFormat];
-
+    
     [self setupSInt16StreamFormat];
-  
+    
 	[self readAudioFilesIntoMemory];
     
     [self configureAndInitializeAudioProcessingGraph];
-    
-    
-	
-	return self;
 }
 
 
@@ -2044,22 +2047,22 @@ float MagnitudeSquared(float x, float y) {
     
     // tz note: file references must added as resources to the xcode project bundle
 
-    
+/*
     NSString *beatsLoop   = [[NSBundle mainBundle] pathForResource:@"BluesDrums" ofType:@"wav"];
     
     NSString *g1    = [[NSBundle mainBundle] pathForResource:@"BluesAccI" ofType:@"wav"];
     NSString *g2    = [[NSBundle mainBundle] pathForResource:@"BluesAccIV" ofType:@"wav"];
     NSString *g3    = [[NSBundle mainBundle] pathForResource:@"BluesAccV" ofType:@"wav"];
-
+*/
     
     
     
     // ExtAudioFileRef objects expect CFURLRef URLs, so cast to CRURLRef here
     // CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)sourceA, kCFURLPOSIXPathStyle, false);
-    sourceURLArray[0]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)beatsLoop, kCFURLPOSIXPathStyle, false);
-    sourceURLArray[1]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)g1, kCFURLPOSIXPathStyle, false);
-    sourceURLArray[2]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)g2, kCFURLPOSIXPathStyle, false);
-    sourceURLArray[3]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)g3, kCFURLPOSIXPathStyle, false);
+    sourceURLArray[0]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)self.skel.sample0file, kCFURLPOSIXPathStyle, false);
+    sourceURLArray[1]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)self.skel.sample1file, kCFURLPOSIXPathStyle, false);
+    sourceURLArray[2]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)self.skel.sample2file, kCFURLPOSIXPathStyle, false);
+    sourceURLArray[3]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)self.skel.sample3file, kCFURLPOSIXPathStyle, false);
 }
 
 

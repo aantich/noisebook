@@ -77,7 +77,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     
     // ******************** Audio Inits ******************
     self.audioObject = [[MixerHostAudio alloc] init];
-    self.audioObject.skel = self.skel;
+    [self.audioObject initWithSkeleton:self.skel];
     
     [self registerForAudioObjectNotifications];
     [self initializeMixerSettingsToUI];
@@ -98,9 +98,12 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     [audioObject enableMixerInput: 1 isOn: self.btnSample1.selected];
 	[audioObject enableMixerInput: 2 isOn: self.btnSample2.selected];
 	[audioObject enableMixerInput: 3 isOn: self.btnSample3.selected];
+    // microphone
+    [audioObject enableMixerInput: 4 isOn: YES];
+//    [audioObject enableMixerInput: 5 isOn: YES];
+ //   [audioObject enableMixerInput: 6 isOn: YES];
+  //  [audioObject enableMixerInput: 7 isOn: YES];
     /*
-    [audioObject enableMixerInput: 4 isOn: mixerBus3Switch.isOn];
-    
     [audioObject enableMixerInput: 5 isOn: mixerBus3Switch.isOn];
     [audioObject setMixerBus5Fx: mixerBus5FxSwitch.isOn];
     
@@ -115,9 +118,12 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 	[audioObject setMixerInput: 5 gain: mixerBus5LevelFader.value];
     */
     
+    // fx is off by default
 	audioObject.micFxOn = NO;
     audioObject.micFxControl = .5;
-    audioObject.micFxType = 0;
+    audioObject.micFxType = 1;
+    // mic to the maximum
+    [audioObject setMixerInput: 4 gain: 1];
     
 	
 //	micFreqDisplay.text = @"go";
@@ -166,6 +172,11 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     
     [self setSkel:nil];
     [self setAudioObject:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: MixerHostAudioObjectPlaybackStateDidChangeNotification
+                                                  object: audioObject];
+
     
     [super viewDidUnload];
 }

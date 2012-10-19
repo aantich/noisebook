@@ -218,7 +218,7 @@ typedef struct {
 
 @property BOOL inputDeviceIsAvailable;
 
-@property (nonatomic, weak) nbSkeletonModel *skel;
+@property (strong) nbSkeletonModel *skel;
 
 
 
@@ -229,6 +229,8 @@ typedef struct {
 - (void) setupAudioSession;
 - (void) setupStereoStreamFormat;
 - (void) setupMonoStreamFormat;
+
+- (void) initWithSkeleton:(nbSkeletonModel*) skel;
 
 
 // setting cursor for sample #smpl to count
