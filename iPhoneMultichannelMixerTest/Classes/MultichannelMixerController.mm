@@ -207,7 +207,7 @@ static OSStatus recordingCallback       (void *                         inRefCon
     NSString *sourceB = [[NSBundle mainBundle] pathForResource:@"BluesAccI" ofType:@"wav"];
     NSString *sourceC = [[NSBundle mainBundle] pathForResource:@"BluesAccIV" ofType:@"wav"];
     NSString *sourceD = [[NSBundle mainBundle] pathForResource:@"BluesAccV" ofType:@"wav"];
-    */
+*/
     // R&B bundle
     
     NSString *sourceA = [[NSBundle mainBundle] pathForResource:@"Acid R&B Drums" ofType:@"wav"];
@@ -292,8 +292,8 @@ static OSStatus recordingCallback       (void *                         inRefCon
     // *******************************************************
     // making sure mic is on
     UInt32 oneFlag=1;
-    result = AudioUnitSetProperty(mRIO, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, 1, &oneFlag, sizeof(oneFlag));
-    if (result) { printf("AudioUnitSetProperty result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
+//    result = AudioUnitSetProperty(mRIO, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, 1, &oneFlag, sizeof(oneFlag));
+  //  if (result) { printf("AudioUnitSetProperty result %ld %08lX %4.4s\n", result, result, (char*)&result); return; }
 
     // *******************************************************
     // hooking up recording callback to RIO output bus
