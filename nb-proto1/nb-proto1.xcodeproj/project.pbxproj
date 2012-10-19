@@ -39,6 +39,14 @@
 		F872F7A41631420100C814DF /* Meixana_ACC_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F7981631420100C814DF /* Meixana_ACC_2.wav */; };
 		F872F7A51631420100C814DF /* Meixana_ACC_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F7991631420100C814DF /* Meixana_ACC_3.wav */; };
 		F872F7A61631420100C814DF /* Meixana_MAIN.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F79A1631420100C814DF /* Meixana_MAIN.wav */; };
+		F872F7B31631538600C814DF /* SNFCoreAudioUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = F872F7AF1631538600C814DF /* SNFCoreAudioUtils.c */; };
+		F872F7B41631538600C814DF /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = F872F7B11631538600C814DF /* TPCircularBuffer.c */; };
+		F872F7B7163153CB00C814DF /* MixerHostAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = F872F7B6163153CB00C814DF /* MixerHostAudio.m */; };
+		F872F7BB1631556600C814DF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F872F7B81631556600C814DF /* AudioToolbox.framework */; };
+		F872F7BF163155D300C814DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F872F7BE163155D300C814DF /* AVFoundation.framework */; };
+		F872F7C11631561B00C814DF /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F872F7C01631561B00C814DF /* CoreMIDI.framework */; };
+		F872F7C31631566400C814DF /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F872F7C21631566300C814DF /* Accelerate.framework */; };
+		F872F7C51631568D00C814DF /* smbPitchShift.m in Sources */ = {isa = PBXBuildFile; fileRef = F872F7C41631568C00C814DF /* smbPitchShift.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +90,17 @@
 		F872F7981631420100C814DF /* Meixana_ACC_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meixana_ACC_2.wav; path = ../../samples/Meixana_ACC_2.wav; sourceTree = "<group>"; };
 		F872F7991631420100C814DF /* Meixana_ACC_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meixana_ACC_3.wav; path = ../../samples/Meixana_ACC_3.wav; sourceTree = "<group>"; };
 		F872F79A1631420100C814DF /* Meixana_MAIN.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meixana_MAIN.wav; path = ../../samples/Meixana_MAIN.wav; sourceTree = "<group>"; };
+		F872F7AF1631538600C814DF /* SNFCoreAudioUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SNFCoreAudioUtils.c; sourceTree = "<group>"; };
+		F872F7B01631538600C814DF /* SNFCoreAudioUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNFCoreAudioUtils.h; sourceTree = "<group>"; };
+		F872F7B11631538600C814DF /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
+		F872F7B21631538600C814DF /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
+		F872F7B5163153CB00C814DF /* MixerHostAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixerHostAudio.h; sourceTree = "<group>"; };
+		F872F7B6163153CB00C814DF /* MixerHostAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixerHostAudio.m; sourceTree = "<group>"; };
+		F872F7B81631556600C814DF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F872F7BE163155D300C814DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F872F7C01631561B00C814DF /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		F872F7C21631566300C814DF /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		F872F7C41631568C00C814DF /* smbPitchShift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = smbPitchShift.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +108,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F872F7C31631566400C814DF /* Accelerate.framework in Frameworks */,
+				F872F7C11631561B00C814DF /* CoreMIDI.framework in Frameworks */,
+				F872F7BF163155D300C814DF /* AVFoundation.framework in Frameworks */,
+				F872F7BB1631556600C814DF /* AudioToolbox.framework in Frameworks */,
 				F872F71016306E0900C814DF /* UIKit.framework in Frameworks */,
 				F872F71216306E0900C814DF /* Foundation.framework in Frameworks */,
 				F872F71416306E0900C814DF /* CoreGraphics.framework in Frameworks */,
@@ -118,6 +141,10 @@
 		F872F70E16306E0900C814DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F872F7C21631566300C814DF /* Accelerate.framework */,
+				F872F7C01631561B00C814DF /* CoreMIDI.framework */,
+				F872F7BE163155D300C814DF /* AVFoundation.framework */,
+				F872F7B81631556600C814DF /* AudioToolbox.framework */,
 				F872F70F16306E0900C814DF /* UIKit.framework */,
 				F872F71116306E0900C814DF /* Foundation.framework */,
 				F872F71316306E0900C814DF /* CoreGraphics.framework */,
@@ -128,6 +155,7 @@
 		F872F71516306E0900C814DF /* nb-proto1 */ = {
 			isa = PBXGroup;
 			children = (
+				F872F7AE1631535500C814DF /* Sound */,
 				F872F76316308D8A00C814DF /* Resources */,
 				F872F74616308AA900C814DF /* Model */,
 				F872F7441630886C00C814DF /* GUI */,
@@ -214,6 +242,20 @@
 				F872F74A16308D4600C814DF /* samples */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		F872F7AE1631535500C814DF /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				F872F7C41631568C00C814DF /* smbPitchShift.m */,
+				F872F7B5163153CB00C814DF /* MixerHostAudio.h */,
+				F872F7B6163153CB00C814DF /* MixerHostAudio.m */,
+				F872F7AF1631538600C814DF /* SNFCoreAudioUtils.c */,
+				F872F7B01631538600C814DF /* SNFCoreAudioUtils.h */,
+				F872F7B11631538600C814DF /* TPCircularBuffer.c */,
+				F872F7B21631538600C814DF /* TPCircularBuffer.h */,
+			);
+			name = Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +349,10 @@
 				F872F74916308AE400C814DF /* nbSkeletonModel.m in Sources */,
 				F872F76616308ED800C814DF /* nbSkeletonTableViewController.m in Sources */,
 				F872F76C1630A75C00C814DF /* nbRecorderViewController.m in Sources */,
+				F872F7B31631538600C814DF /* SNFCoreAudioUtils.c in Sources */,
+				F872F7B41631538600C814DF /* TPCircularBuffer.c in Sources */,
+				F872F7B7163153CB00C814DF /* MixerHostAudio.m in Sources */,
+				F872F7C51631568D00C814DF /* smbPitchShift.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "nbSkeletonTableViewController.h"
 #import "nbSkeletonModel.h"
+#import "nbRecorderViewController.h"
 
 @interface nbSkeletonTableViewController ()
 
@@ -111,15 +112,26 @@
 
 #pragma mark - Table view delegate
 
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
+    
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
      // ...
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+ 
+}
+*/
+
+// magic function that handles the skeleton press event and has to prepare recorder view to load correct sound files etc
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    nbRecorderViewController* c = segue.destinationViewController;
+    nbSkeletonModel* skel = [self.skeletons objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    c.skel = skel;
+
 }
 
 @end
