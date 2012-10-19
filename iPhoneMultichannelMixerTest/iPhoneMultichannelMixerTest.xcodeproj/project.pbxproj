@@ -32,18 +32,18 @@
 		2BF8389A1047021B000A5DCC /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BF838981047021B000A5DCC /* CAXException.cpp */; };
 		2BFBE19D0F5C9B30003ECC4F /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFBE19B0F5C9B30003ECC4F /* MyViewController.m */; };
 		F81D7DC8162C19BC00A3C96E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DC7162C19BC00A3C96E /* Default-568h@2x.png */; };
-		F81D7DD5162C439A00A3C96E /* Meixana_ACC_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DD1162C439A00A3C96E /* Meixana_ACC_1.wav */; };
-		F81D7DD6162C439A00A3C96E /* Meixana_ACC_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DD2162C439A00A3C96E /* Meixana_ACC_2.wav */; };
-		F81D7DD7162C439A00A3C96E /* Meixana_ACC_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DD3162C439A00A3C96E /* Meixana_ACC_3.wav */; };
-		F81D7DD8162C439A00A3C96E /* Meixana_MAIN.wav in Resources */ = {isa = PBXBuildFile; fileRef = F81D7DD4162C439A00A3C96E /* Meixana_MAIN.wav */; };
-		F8A095A2162F1CDE00D5759F /* BluesAccI.wav in Resources */ = {isa = PBXBuildFile; fileRef = F8A0959E162F1CDE00D5759F /* BluesAccI.wav */; };
-		F8A095A3162F1CDE00D5759F /* BluesAccIV.wav in Resources */ = {isa = PBXBuildFile; fileRef = F8A0959F162F1CDE00D5759F /* BluesAccIV.wav */; };
-		F8A095A4162F1CDE00D5759F /* BluesAccV.wav in Resources */ = {isa = PBXBuildFile; fileRef = F8A095A0162F1CDE00D5759F /* BluesAccV.wav */; };
-		F8A095A5162F1CDE00D5759F /* BluesDrums.wav in Resources */ = {isa = PBXBuildFile; fileRef = F8A095A1162F1CDE00D5759F /* BluesDrums.wav */; };
-		F8A095AB162F2A9500D5759F /* Acid R&B Drums.wav in Resources */ = {isa = PBXBuildFile; fileRef = F8A095A7162F2A9500D5759F /* Acid R&B Drums.wav */; };
-		F8A095AC162F2A9500D5759F /* Acid R&B Lead.wav in Resources */ = {isa = PBXBuildFile; fileRef = F8A095A8162F2A9500D5759F /* Acid R&B Lead.wav */; };
-		F8A095AD162F2A9500D5759F /* Acid R&B LeadArp.wav in Resources */ = {isa = PBXBuildFile; fileRef = F8A095A9162F2A9500D5759F /* Acid R&B LeadArp.wav */; };
-		F8A095AE162F2A9500D5759F /* Acid R&B SynthChords.wav in Resources */ = {isa = PBXBuildFile; fileRef = F8A095AA162F2A9500D5759F /* Acid R&B SynthChords.wav */; };
+		F872F783163141A300C814DF /* Acid R&B Drums.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F777163141A000C814DF /* Acid R&B Drums.wav */; };
+		F872F784163141A300C814DF /* Acid R&B Lead.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F778163141A100C814DF /* Acid R&B Lead.wav */; };
+		F872F785163141A300C814DF /* Acid R&B LeadArp.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F779163141A100C814DF /* Acid R&B LeadArp.wav */; };
+		F872F786163141A300C814DF /* Acid R&B SynthChords.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F77A163141A100C814DF /* Acid R&B SynthChords.wav */; };
+		F872F787163141A300C814DF /* BluesAccI.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F77B163141A100C814DF /* BluesAccI.wav */; };
+		F872F788163141A300C814DF /* BluesAccIV.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F77C163141A100C814DF /* BluesAccIV.wav */; };
+		F872F789163141A300C814DF /* BluesAccV.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F77D163141A100C814DF /* BluesAccV.wav */; };
+		F872F78A163141A300C814DF /* BluesDrums.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F77E163141A200C814DF /* BluesDrums.wav */; };
+		F872F78B163141A300C814DF /* Meixana_ACC_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F77F163141A200C814DF /* Meixana_ACC_1.wav */; };
+		F872F78C163141A300C814DF /* Meixana_ACC_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F780163141A200C814DF /* Meixana_ACC_2.wav */; };
+		F872F78D163141A300C814DF /* Meixana_ACC_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F781163141A200C814DF /* Meixana_ACC_3.wav */; };
+		F872F78E163141A300C814DF /* Meixana_MAIN.wav in Resources */ = {isa = PBXBuildFile; fileRef = F872F782163141A200C814DF /* Meixana_MAIN.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,18 +83,18 @@
 		2BFBE1A00F5C9C30003ECC4F /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F81D7DC7162C19BC00A3C96E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		F81D7DD1162C439A00A3C96E /* Meixana_ACC_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Meixana_ACC_1.wav; sourceTree = "<group>"; };
-		F81D7DD2162C439A00A3C96E /* Meixana_ACC_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Meixana_ACC_2.wav; sourceTree = "<group>"; };
-		F81D7DD3162C439A00A3C96E /* Meixana_ACC_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Meixana_ACC_3.wav; sourceTree = "<group>"; };
-		F81D7DD4162C439A00A3C96E /* Meixana_MAIN.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Meixana_MAIN.wav; sourceTree = "<group>"; };
-		F8A0959E162F1CDE00D5759F /* BluesAccI.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BluesAccI.wav; sourceTree = "<group>"; };
-		F8A0959F162F1CDE00D5759F /* BluesAccIV.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BluesAccIV.wav; sourceTree = "<group>"; };
-		F8A095A0162F1CDE00D5759F /* BluesAccV.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BluesAccV.wav; sourceTree = "<group>"; };
-		F8A095A1162F1CDE00D5759F /* BluesDrums.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BluesDrums.wav; sourceTree = "<group>"; };
-		F8A095A7162F2A9500D5759F /* Acid R&B Drums.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Acid R&B Drums.wav"; sourceTree = "<group>"; };
-		F8A095A8162F2A9500D5759F /* Acid R&B Lead.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Acid R&B Lead.wav"; sourceTree = "<group>"; };
-		F8A095A9162F2A9500D5759F /* Acid R&B LeadArp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Acid R&B LeadArp.wav"; sourceTree = "<group>"; };
-		F8A095AA162F2A9500D5759F /* Acid R&B SynthChords.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Acid R&B SynthChords.wav"; sourceTree = "<group>"; };
+		F872F777163141A000C814DF /* Acid R&B Drums.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Acid R&B Drums.wav"; path = "../samples/Acid R&B Drums.wav"; sourceTree = "<group>"; };
+		F872F778163141A100C814DF /* Acid R&B Lead.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Acid R&B Lead.wav"; path = "../samples/Acid R&B Lead.wav"; sourceTree = "<group>"; };
+		F872F779163141A100C814DF /* Acid R&B LeadArp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Acid R&B LeadArp.wav"; path = "../samples/Acid R&B LeadArp.wav"; sourceTree = "<group>"; };
+		F872F77A163141A100C814DF /* Acid R&B SynthChords.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Acid R&B SynthChords.wav"; path = "../samples/Acid R&B SynthChords.wav"; sourceTree = "<group>"; };
+		F872F77B163141A100C814DF /* BluesAccI.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = BluesAccI.wav; path = ../samples/BluesAccI.wav; sourceTree = "<group>"; };
+		F872F77C163141A100C814DF /* BluesAccIV.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = BluesAccIV.wav; path = ../samples/BluesAccIV.wav; sourceTree = "<group>"; };
+		F872F77D163141A100C814DF /* BluesAccV.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = BluesAccV.wav; path = ../samples/BluesAccV.wav; sourceTree = "<group>"; };
+		F872F77E163141A200C814DF /* BluesDrums.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = BluesDrums.wav; path = ../samples/BluesDrums.wav; sourceTree = "<group>"; };
+		F872F77F163141A200C814DF /* Meixana_ACC_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meixana_ACC_1.wav; path = ../samples/Meixana_ACC_1.wav; sourceTree = "<group>"; };
+		F872F780163141A200C814DF /* Meixana_ACC_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meixana_ACC_2.wav; path = ../samples/Meixana_ACC_2.wav; sourceTree = "<group>"; };
+		F872F781163141A200C814DF /* Meixana_ACC_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meixana_ACC_3.wav; path = ../samples/Meixana_ACC_3.wav; sourceTree = "<group>"; };
+		F872F782163141A200C814DF /* Meixana_MAIN.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meixana_MAIN.wav; path = ../samples/Meixana_MAIN.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,18 +161,18 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F8A095A7162F2A9500D5759F /* Acid R&B Drums.wav */,
-				F8A095A8162F2A9500D5759F /* Acid R&B Lead.wav */,
-				F8A095A9162F2A9500D5759F /* Acid R&B LeadArp.wav */,
-				F8A095AA162F2A9500D5759F /* Acid R&B SynthChords.wav */,
-				F8A0959E162F1CDE00D5759F /* BluesAccI.wav */,
-				F8A0959F162F1CDE00D5759F /* BluesAccIV.wav */,
-				F8A095A0162F1CDE00D5759F /* BluesAccV.wav */,
-				F8A095A1162F1CDE00D5759F /* BluesDrums.wav */,
-				F81D7DD1162C439A00A3C96E /* Meixana_ACC_1.wav */,
-				F81D7DD2162C439A00A3C96E /* Meixana_ACC_2.wav */,
-				F81D7DD3162C439A00A3C96E /* Meixana_ACC_3.wav */,
-				F81D7DD4162C439A00A3C96E /* Meixana_MAIN.wav */,
+				F872F777163141A000C814DF /* Acid R&B Drums.wav */,
+				F872F778163141A100C814DF /* Acid R&B Lead.wav */,
+				F872F779163141A100C814DF /* Acid R&B LeadArp.wav */,
+				F872F77A163141A100C814DF /* Acid R&B SynthChords.wav */,
+				F872F77B163141A100C814DF /* BluesAccI.wav */,
+				F872F77C163141A100C814DF /* BluesAccIV.wav */,
+				F872F77D163141A100C814DF /* BluesAccV.wav */,
+				F872F77E163141A200C814DF /* BluesDrums.wav */,
+				F872F77F163141A200C814DF /* Meixana_ACC_1.wav */,
+				F872F780163141A200C814DF /* Meixana_ACC_2.wav */,
+				F872F781163141A200C814DF /* Meixana_ACC_3.wav */,
+				F872F782163141A200C814DF /* Meixana_MAIN.wav */,
 				185E840411E525570096E7CF /* Icon-72.png */,
 				185E840511E525570096E7CF /* Icon-Small-50.png */,
 				185E840611E525570096E7CF /* Icon-Small.png */,
@@ -283,18 +283,18 @@
 				185E841011E525570096E7CF /* Icon@2x.png in Resources */,
 				185E841111E525570096E7CF /* iTunesArtwork in Resources */,
 				F81D7DC8162C19BC00A3C96E /* Default-568h@2x.png in Resources */,
-				F81D7DD5162C439A00A3C96E /* Meixana_ACC_1.wav in Resources */,
-				F81D7DD6162C439A00A3C96E /* Meixana_ACC_2.wav in Resources */,
-				F81D7DD7162C439A00A3C96E /* Meixana_ACC_3.wav in Resources */,
-				F81D7DD8162C439A00A3C96E /* Meixana_MAIN.wav in Resources */,
-				F8A095A2162F1CDE00D5759F /* BluesAccI.wav in Resources */,
-				F8A095A3162F1CDE00D5759F /* BluesAccIV.wav in Resources */,
-				F8A095A4162F1CDE00D5759F /* BluesAccV.wav in Resources */,
-				F8A095A5162F1CDE00D5759F /* BluesDrums.wav in Resources */,
-				F8A095AB162F2A9500D5759F /* Acid R&B Drums.wav in Resources */,
-				F8A095AC162F2A9500D5759F /* Acid R&B Lead.wav in Resources */,
-				F8A095AD162F2A9500D5759F /* Acid R&B LeadArp.wav in Resources */,
-				F8A095AE162F2A9500D5759F /* Acid R&B SynthChords.wav in Resources */,
+				F872F783163141A300C814DF /* Acid R&B Drums.wav in Resources */,
+				F872F784163141A300C814DF /* Acid R&B Lead.wav in Resources */,
+				F872F785163141A300C814DF /* Acid R&B LeadArp.wav in Resources */,
+				F872F786163141A300C814DF /* Acid R&B SynthChords.wav in Resources */,
+				F872F787163141A300C814DF /* BluesAccI.wav in Resources */,
+				F872F788163141A300C814DF /* BluesAccIV.wav in Resources */,
+				F872F789163141A300C814DF /* BluesAccV.wav in Resources */,
+				F872F78A163141A300C814DF /* BluesDrums.wav in Resources */,
+				F872F78B163141A300C814DF /* Meixana_ACC_1.wav in Resources */,
+				F872F78C163141A300C814DF /* Meixana_ACC_2.wav in Resources */,
+				F872F78D163141A300C814DF /* Meixana_ACC_3.wav in Resources */,
+				F872F78E163141A300C814DF /* Meixana_MAIN.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
