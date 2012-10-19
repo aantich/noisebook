@@ -51,11 +51,13 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     
     [btnRecord setBackgroundImage:greenImage forState:UIControlStateNormal];
 	[btnRecord setBackgroundImage:redImage forState:UIControlStateSelected];
+    [btnRecord setTitle:@"Start Recording" forState:UIControlStateNormal];
+    [btnRecord setTitle:@"Stop Recording" forState:UIControlStateSelected];
     
-    [btnSample0 setBackgroundImage:greenImage forState:UIControlStateNormal];
-	[btnSample0 setBackgroundImage:redImage forState:UIControlStateSelected];
-    [btnSample0 setTitle:@"Rhythm track: ON" forState:UIControlStateNormal];
-    [btnSample0 setTitle:@"Rhythm track: OFF" forState:UIControlStateSelected];
+    [btnSample0 setBackgroundImage:greenImage forState:UIControlStateSelected];
+	[btnSample0 setBackgroundImage:redImage forState:UIControlStateNormal];
+    [btnSample0 setTitle:@"Rhythm track: ON" forState:UIControlStateSelected];
+    [btnSample0 setTitle:@"Rhythm track: OFF" forState:UIControlStateNormal];
     
     [btnSample1 setTitle:@"Off" forState:UIControlStateNormal];
     [btnSample1 setTitle:@"On" forState:UIControlStateSelected];
@@ -70,10 +72,12 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     [btnSample3 setBackgroundImage:redImage forState:UIControlStateNormal];
     [btnSample3 setBackgroundImage:greenImage forState:UIControlStateSelected];
     
-    self.title = skel.name;
+    self.title = self.skel.name;
+    btnSample0.selected = YES;
     
     // ******************** Audio Inits ******************
     self.audioObject = [[MixerHostAudio alloc] init];
+    self.audioObject.skel = self.skel;
     
     [self registerForAudioObjectNotifications];
     [self initializeMixerSettingsToUI];
@@ -90,12 +94,11 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 	
     //  initialize all the MixerHostAudio methods which respond to UI objects
 	
-    [audioObject enableMixerInput: 0 isOn: YES];
-    [audioObject enableMixerInput: 1 isOn: YES];
-//	[audioObject enableMixerInput: 2 isOn: mixerBus2Switch.isOn];
-
+    [audioObject enableMixerInput: 0 isOn: self.btnSample0.selected];
+    [audioObject enableMixerInput: 1 isOn: self.btnSample1.selected];
+	[audioObject enableMixerInput: 2 isOn: self.btnSample2.selected];
+	[audioObject enableMixerInput: 3 isOn: self.btnSample3.selected];
     /*
-	[audioObject enableMixerInput: 3 isOn: mixerBus3Switch.isOn];
     [audioObject enableMixerInput: 4 isOn: mixerBus3Switch.isOn];
     
     [audioObject enableMixerInput: 5 isOn: mixerBus3Switch.isOn];
@@ -173,15 +176,56 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
         btnSample0.selected = NO;
     else
         btnSample0.selected = YES;
+    
+    [audioObject enableMixerInput: 0 isOn: self.btnSample0.selected];
 }
 // other samples buttons pressed
 - (IBAction)pressedAnySample:(id)sender {
-    //UInt32 inputNum = [sender tag];
+    UInt32 inputNum = [sender tag];
     UIButton* btn = (UIButton*) sender;
     if (btn.selected)
         btn.selected = NO;
-    else
+    else {
         btn.selected = YES;
+        switch (inputNum) {
+            case 1:
+                self.btnSample2.selected = NO;
+                self.btnSample3.selected = NO;
+                break;
+            case 2:
+                self.btnSample1.selected = NO;
+                self.btnSample3.selected = NO;
+                break;
+            case 3:
+                self.btnSample1.selected = NO;
+                self.btnSample2.selected = NO;
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    
+    
+    [audioObject setCurrentSampleFrame:0 forSample:inputNum];
+    [audioObject enableMixerInput: 1 isOn: self.btnSample1.selected];
+    [audioObject enableMixerInput: 2 isOn: self.btnSample2.selected];
+    [audioObject enableMixerInput: 3 isOn: self.btnSample3.selected];
+}
+
+- (IBAction)toggleRecording:(id)sender {
+    if (audioObject.isPlaying) {
+        
+        [audioObject stopAUGraph];
+        self.btnRecord.selected = NO;
+        
+    } else {
+        
+        [audioObject startAUGraph];
+        self.btnRecord.selected = YES;
+    } 
+
 }
 
 

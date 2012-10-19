@@ -36,6 +36,8 @@
 - (IBAction)pressedSample0:(id)sender;
 // other samples (1-2-3)
 - (IBAction)pressedAnySample:(id)sender;
+// processing record button push
+- (IBAction)toggleRecording:(id)sender;
 
 - (void) initializeMixerSettingsToUI;
 - (void) registerForAudioObjectNotifications;

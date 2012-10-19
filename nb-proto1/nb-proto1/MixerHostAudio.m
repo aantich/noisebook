@@ -1810,6 +1810,8 @@ float MagnitudeSquared(float x, float y) {
 
 @synthesize inputDeviceIsAvailable;
 
+@synthesize skel;
+
 // end of properties
 
 
@@ -2043,17 +2045,21 @@ float MagnitudeSquared(float x, float y) {
     // tz note: file references must added as resources to the xcode project bundle
 
     
-    NSString *guitarLoop   = [[NSBundle mainBundle] pathForResource:@"BluesDrums" ofType:@"wav"];
+    NSString *beatsLoop   = [[NSBundle mainBundle] pathForResource:@"BluesDrums" ofType:@"wav"];
     
-    NSString *beatsLoop    = [[NSBundle mainBundle] pathForResource:@"BluesAccI" ofType:@"wav"];
+    NSString *g1    = [[NSBundle mainBundle] pathForResource:@"BluesAccI" ofType:@"wav"];
+    NSString *g2    = [[NSBundle mainBundle] pathForResource:@"BluesAccIV" ofType:@"wav"];
+    NSString *g3    = [[NSBundle mainBundle] pathForResource:@"BluesAccV" ofType:@"wav"];
 
     
     
     
     // ExtAudioFileRef objects expect CFURLRef URLs, so cast to CRURLRef here
     // CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)sourceA, kCFURLPOSIXPathStyle, false);
-    sourceURLArray[0]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)guitarLoop, kCFURLPOSIXPathStyle, false);
-    sourceURLArray[1]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)beatsLoop, kCFURLPOSIXPathStyle, false);
+    sourceURLArray[0]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)beatsLoop, kCFURLPOSIXPathStyle, false);
+    sourceURLArray[1]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)g1, kCFURLPOSIXPathStyle, false);
+    sourceURLArray[2]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)g2, kCFURLPOSIXPathStyle, false);
+    sourceURLArray[3]   = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)g3, kCFURLPOSIXPathStyle, false);
 }
 
 
@@ -2736,7 +2742,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
     NSLog (@"Connecting the sampler output to the mixer input node 4");
     
 	// connect file player bus 0 (sampler output) to mixer bus 2 (third input)
-	CheckError(AUGraphConnectNodeInput(processingGraph, samplerNode, 0, mixerNode, 4),
+	CheckError(AUGraphConnectNodeInput(processingGraph, samplerNode, 0, mixerNode, 6),
 			   "AUGraphConnectNodeInput failed (sampler 0 to mixer 1)");
     
     
@@ -2751,7 +2757,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
     NSLog (@"Connecting the input effect 1 output to the mixer input node 5");
     
 	// connect file player bus 0 (input effect 1 output) to mixer bus 5 
-	CheckError(AUGraphConnectNodeInput(processingGraph, inputEffect1Node, 0, mixerNode, 5),
+	CheckError(AUGraphConnectNodeInput(processingGraph, inputEffect1Node, 0, mixerNode, 7),
 			   "AUGraphConnectNodeInput failed (input effect1 0 to mixer 5)");
     
     
@@ -2968,13 +2974,13 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 
     
     
-    UInt32 busCount   = 6;    // bus count for mixer unit input
+    UInt32 busCount   = 8;    // bus count for mixer unit input
     UInt32 guitarBus  = 0;    // mixer unit bus 0 will be stereo and will take the guitar sound
     UInt32 beatsBus   = 1;    // mixer unit bus 1 will be mono and will take the beats sound
-	UInt32 micBus	  = 2;    // mixer unit bus 2 will be mono and will take the microphone input
-	UInt32 synthBus   = 3;    // mixer unit bus 2 will be mono and will take the microphone input
-//    UInt32 samplerBus   = 4;     
-//    UInt32 filePlayerBus = 5;
+	UInt32 micBus	  = 4;    // mixer unit bus 2 will be mono and will take the microphone input
+	UInt32 synthBus   = 5;    // mixer unit bus 2 will be mono and will take the microphone input
+//    UInt32 samplerBus   = 6;
+//    UInt32 filePlayerBus = 7;
     
     NSLog (@"Setting mixer unit input bus count to: %lu", busCount);
     result = AudioUnitSetProperty (
@@ -3005,7 +3011,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 
     if (noErr != result) {[self printErrorMessage: @"AudioUnitSetProperty (set mixer unit input stream format)" withStatus: result]; return;}
 
-	UInt16 fileCount = 2;	// number of 'file' busses to init on the mixer
+	UInt16 fileCount = NUM_FILES;	// number of 'file' busses to init on the mixer - currently 4, so need to reset other input channels!!!
     // Attach the input render callback and context to each input bus
 	// this is for the two file players
 	// subtract 2 from bus count because we're not including mic & synth bus for now...  tz 
@@ -3034,7 +3040,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 
 	if(inputDeviceIsAvailable) {
 	
-        UInt16 busNumber = 2;		// mic channel on mixer
+        UInt16 busNumber = 4;		// mic channel on mixer
 	
         // Setup the structure that contains the input render callback 
         AURenderCallbackStruct inputCallbackStruct;
@@ -3064,7 +3070,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 	///////////////////////////////////////////////////////////////
 	// now attach the separate render callback for the synth channel
 	
-	busNumber = 3;		// synth channel on mixer
+	busNumber = 5;		// synth channel on mixer
 		
     AURenderCallbackStruct synthCallbackStruct;     // Setup structure that contains the render callback function
 	
@@ -3126,8 +3132,8 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
                  kAudioUnitProperty_StreamFormat,
                  kAudioUnitScope_Input,
                  beatsBus,
-                 &monoStreamFormat,
-                 sizeof (monoStreamFormat)
+                 &stereoStreamFormat,   /*monoStreamFormat,*/
+                 sizeof (stereoStreamFormat)
              );
 
     if (noErr != result) {[self printErrorMessage: @"AudioUnitSetProperty set mixer unit bus 1 (mono beats loop) stream format)" withStatus: result];return;}
@@ -3571,6 +3577,12 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 #pragma mark -
 #pragma mark Mixer unit control
 
+//////////////////////
+// Exposing frame count reset for the sample buffers
+- (void) setCurrentSampleFrame: (UInt32) count forSample:(UInt32) smpl {
+    soundStructArray[smpl].sampleNumber = count;
+}
+
 ////////////////////////
 // mixer handler methods
 
@@ -3593,23 +3605,24 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
     
 
     // Ensure that the sound loops stay in sync when reenabling an input bus
+    /*
     if (0 == inputBus && 1 == isOnValue) {
         soundStructArray[0].sampleNumber = soundStructArray[1].sampleNumber;
     }
     
     if (1 == inputBus && 1 == isOnValue) {
         soundStructArray[1].sampleNumber = soundStructArray[0].sampleNumber;
-    }
+    }*/
     
     // We removed the UI switch for bus 1 (beats) and merged it with bus 0 (guitar)
     // So if bus 0 switch is pressed call this method again with '1'
     // A wimpy form of recursion.
 
     
-    if( inputBus == 0 ) {
+/*    if( inputBus == 0 ) {
         inputBus = 1;
         [self enableMixerInput: inputBus isOn: isOnValue ];
-    }
+    }*/
   
  
 

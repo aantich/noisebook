@@ -14,9 +14,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Accelerate/Accelerate.h>			// for vdsp functions
 
+#import "nbSkeletonModel.h"
+
 //#import "TPCircularBuffer.h"              // for ring buffers 
 
-#define NUM_FILES 2                         // number of audio files read in by old method
+#define NUM_FILES 4                         // number of audio files read in by old method
 
 #define kDelayBufferLength 1024 * 100       // measured in slices - a couple seconds worth at 44.1k
 
@@ -216,6 +218,8 @@ typedef struct {
 
 @property BOOL inputDeviceIsAvailable;
 
+@property (nonatomic, weak) nbSkeletonModel *skel;
+
 
 
 
@@ -225,6 +229,10 @@ typedef struct {
 - (void) setupAudioSession;
 - (void) setupStereoStreamFormat;
 - (void) setupMonoStreamFormat;
+
+
+// setting cursor for sample #smpl to count
+- (void) setCurrentSampleFrame: (UInt32) count forSample:(UInt32) smpl;
 
 
 - (void) setupSInt16StreamFormat;
