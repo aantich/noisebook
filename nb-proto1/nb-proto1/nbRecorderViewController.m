@@ -122,8 +122,13 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 	audioObject.micFxOn = NO;
     audioObject.micFxControl = .5;
     audioObject.micFxType = 1;
+
     // mic to the maximum
     [audioObject setMixerInput: 4 gain: 1];
+    
+    for (int i = 0; i<4; i++) {
+        [audioObject setMixerInput: i gain: 0.7];
+    }
     
 	
 //	micFreqDisplay.text = @"go";
